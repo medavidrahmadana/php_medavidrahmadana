@@ -1,5 +1,5 @@
 <?php
-// Soal 1 (input)
+// Soal 1a (input)
 if (!isset($_POST['step'])) {
 ?>
     <form method="POST">
@@ -16,7 +16,7 @@ if (!isset($_POST['step'])) {
     exit;
 }
 
-// Soal 2 (Generate Text field dan sesuai baris)
+// Soal 1b (Generate Text field dan sesuai baris)
 if ($_POST['step'] == 2) {
     $baris = $_POST['baris'];
     $kolom = $_POST['kolom'];
@@ -42,7 +42,7 @@ if ($_POST['step'] == 2) {
     exit;
 }
 
-// Soal 3 (HASIL)
+// Soal 1c (HASIL)
 if ($_POST['step'] == 3) {
     $data = $_POST['data'];
 
@@ -51,5 +51,9 @@ if ($_POST['step'] == 3) {
             echo "$i.$j : $value <br>";
         }
     }
+    echo "<br><br>";
+    echo "<form method='POST'>";
+    echo "<button type='submit'>Back to Step 1</button>";
+    echo "</form>";
 }
 ?>
