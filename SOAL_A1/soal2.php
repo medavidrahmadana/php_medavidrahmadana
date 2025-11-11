@@ -1,7 +1,7 @@
 <?php
 $connect = new mysqli("localhost", "root", "", "testdb");
 
-// handle search
+// buat handle search
 $keyword = $_GET['search'] ?? '';
 
 if ($keyword != '') {
@@ -33,11 +33,19 @@ $result = $connect->query($sql);
         <th>Hobi</th>
         <th>Jumlah Person</th>
     </tr>
-
-    <?php while ($row = $result->fetch_assoc()): ?>
+    <!-- handle jika data tidak ada (misal "ngaji") -->
+    <?php if ($result->num_rows > 0): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+                <td><?= $row['hobi'] ?></td>
+                <td><?= $row['jumlah_person'] ?></td>
+            </tr>
+        <?php endwhile; ?>
+    <?php else: ?>
         <tr>
-            <td><?= $row['hobi'] ?></td>
-            <td><?= $row['jumlah_person'] ?></td>
+            <td colspan="2" style="text-align:center;color:red;">
+                Data tidak ditemukan
+            </td>
         </tr>
-    <?php endwhile; ?>
+    <?php endif; ?>
 </table>
